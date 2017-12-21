@@ -15,14 +15,14 @@ import static org.junit.Assert.*;
  * @author katrina
  */
 public class DateOfTheWeekTest {
-    
-    public DateOfTheWeekTest() {
-    }
-    
+
+    private static String dateAsString;
+
     @BeforeClass
     public static void setUpClass() {
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -33,16 +33,18 @@ public class DateOfTheWeekTest {
     @Test
     public void testGetDayOfTheWeekMonday() {
         System.out.println("getDayOfTheWeek");
-        String dateAsString = "20-11-2017";
+        dateAsString = "27-11-2017";
         int expResult = 2;
+
         int result = DateOfTheWeek.getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
     public void testGetDayOfTheWeekFriday() {
         System.out.println("getDayOfTheWeek");
-        String dateAsString = "24-11-2017";
+        dateAsString = "24-11-2017";
         int expResult = 6;
         int result = DateOfTheWeek.getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);

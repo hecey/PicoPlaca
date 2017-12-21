@@ -16,9 +16,7 @@ import static org.junit.Assert.*;
  */
 public class PlateLastDigitsTest {
     
-    public PlateLastDigitsTest() {
-    }
-    
+ 
     @BeforeClass
     public static void setUpClass() {
     }

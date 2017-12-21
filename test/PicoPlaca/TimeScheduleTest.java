@@ -16,15 +16,18 @@ import static org.junit.Assert.*;
  */
 public class TimeScheduleTest {
 
-    public TimeScheduleTest() {
-    }
+    private static TimeSchedule timeSchedule;
 
+    
     @BeforeClass
     public static void setUpClass() {
+         timeSchedule = new TimeSchedule();
+         timeSchedule.InitializeRangeList();
     }
 
     @AfterClass
     public static void tearDownClass() {
+        timeSchedule = null;
     }
 
     /**
@@ -35,7 +38,7 @@ public class TimeScheduleTest {
         System.out.println("insideRestrictedSchedule for True is valid");
         String time = "07:30";
         boolean expResult = true;
-        boolean result = TimeSchedule.insideRestrictedSchedule(time);
+        boolean result = timeSchedule.insideRestrictedSchedule(time);
         assertEquals(time + " is not in the time  schedule range", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -46,7 +49,7 @@ public class TimeScheduleTest {
         System.out.println("insideRestrictedSchedule for False is valid");
         String time = "9:40";
         boolean expResult = true;
-        boolean result = TimeSchedule.insideRestrictedSchedule(time);
+        boolean result = timeSchedule.insideRestrictedSchedule(time);
         assertNotEquals(time + " is in the time  schedule range", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

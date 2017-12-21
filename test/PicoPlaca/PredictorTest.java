@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  */
 public class PredictorTest {
 
+    
     @Test
     public void testCanBeOnTheRoadWhenValidScheduleTime() {
         System.out.println("canBeOnTheRoad");
