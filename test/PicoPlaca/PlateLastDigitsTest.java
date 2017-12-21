@@ -34,7 +34,7 @@ public class PlateLastDigitsTest {
         String licensePlateNumber = "ABC-1234";
         int numberOfDigits = 1;
         int expResult = 4;
-        int result = PlateLastDigits.extractLastDigits(licensePlateNumber, numberOfDigits);
+        int result = new PlateLastDigits().extractLastDigits(licensePlateNumber, numberOfDigits);
         assertEquals("Expeted result is 4", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

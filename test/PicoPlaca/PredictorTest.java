@@ -18,7 +18,20 @@ import static org.junit.Assert.*;
  */
 public class PredictorTest {
 
-    
+    private static TimeSchedule timeSchedule;
+    private static PlateLastDigits lastDigit;
+
+     @BeforeClass
+    public static void setUpClass() {
+         timeSchedule = new TimeSchedule();
+         timeSchedule.InitializeRangeList();
+         lastDigit = new PlateLastDigits();
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        timeSchedule = null;
+    }
     @Test
     public void testCanBeOnTheRoadWhenValidScheduleTime() {
         System.out.println("canBeOnTheRoad");
@@ -30,7 +43,7 @@ public class PredictorTest {
         instance.setTime("9:50");
 
         boolean expResult = true;
-        boolean result = instance.canBeOnTheRoad();
+        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit);
         assertEquals("Licence number: " + instance.getLicensePlateNumber() + " should not be allowed to run", expResult, result);
 
         // TODO review the generated test code and remove the default call to fail.
@@ -48,7 +61,7 @@ public class PredictorTest {
         instance.setTime("07:30");
 
         boolean expResult = false;
-        boolean result = instance.canBeOnTheRoad();
+        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit);
         assertEquals("Licence number: " + instance.getLicensePlateNumber() + " should be allowed to run", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
