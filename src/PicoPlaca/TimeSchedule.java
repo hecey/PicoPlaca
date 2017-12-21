@@ -57,7 +57,9 @@ public class TimeSchedule {
     }
 
     public static boolean insideRestrictedSchedule(Date userTime) {
-
+        if (timeRangeList.isEmpty()) {
+            InitializeRangeList();
+        }
         for (TimeRange timeRange : timeRangeList) {
             if (userTime.after(timeRange.getTimeToStart()) && userTime.before(timeRange.getTimeToFinish())) {
                 return true;
@@ -66,7 +68,8 @@ public class TimeSchedule {
 
         return false;
     }
-    public static void ClearTimeRangeList(){
-        timeRangeList=null;
+
+    public static void ClearTimeRangeList() {
+        timeRangeList = null;
     }
 }
