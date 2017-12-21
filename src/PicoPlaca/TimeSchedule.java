@@ -16,12 +16,12 @@ import java.util.logging.Logger;
  *
  * @author katrina
  */
-public class TimeSchedule {
+public class TimeSchedule implements Schedule{
 
-    private static ArrayList<TimeRange> timeRangeList = new ArrayList();
+    private static ArrayList<Range> timeRangeList = new ArrayList();
     private static SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 
-    public static void Schedule(ArrayList<TimeRange> timeRangeListNew) {
+    public static void Schedule(ArrayList<Range> timeRangeListNew) {
         timeRangeList = timeRangeListNew;
 
     }
@@ -33,15 +33,15 @@ public class TimeSchedule {
 
     }
 
-    public static void setTimeRangeList(ArrayList<TimeRange> timeRangeListNew) {
+    public static void setTimeRangeList(ArrayList<Range> timeRangeListNew) {
         timeRangeList = timeRangeListNew;
     }
 
-    public static void setParser(SimpleDateFormat parser) {
-        parser = parser;
+    public static void setParser(SimpleDateFormat parserNew) {
+        parser = parserNew;
     }
 
-    public static boolean insideRestrictedSchedule(String time) {
+    public  boolean insideRestrictedSchedule(String time) {
         if (timeRangeList == null) {
             InitializeRangeList();
         }
@@ -56,11 +56,11 @@ public class TimeSchedule {
 
     }
 
-    public static boolean insideRestrictedSchedule(Date userTime) {
+    public  boolean insideRestrictedSchedule(Date userTime) {
         if (timeRangeList.isEmpty()) {
             InitializeRangeList();
         }
-        for (TimeRange timeRange : timeRangeList) {
+        for (Range timeRange : timeRangeList) {
             if (userTime.after(timeRange.getTimeToStart()) && userTime.before(timeRange.getTimeToFinish())) {
                 return true;
             }

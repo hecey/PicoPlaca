@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author katrina
  */
-public class TimeRange {
+public class TimeRange implements Range{
 
     private static SimpleDateFormat parser;
     private Date timeToStart;

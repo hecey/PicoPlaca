@@ -9,9 +9,9 @@ package PicoPlaca;
  *
  * @author katrina
  */
-public class PlateLastDigits {
+public class PlateLastDigits implements LastDigits{
 
-    public static int extractLastDigits(String licensePlateNumber, int numberOfDigits) {
+    public int extractLastDigits(String licensePlateNumber, int numberOfDigits) {
         String string = "";
         string = licensePlateNumber.trim().substring(licensePlateNumber.length()-numberOfDigits, licensePlateNumber.length());
         

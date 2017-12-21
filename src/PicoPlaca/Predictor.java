@@ -23,6 +23,7 @@ public class Predictor {
     private String time;
     private int licenseLastNumber;
     
+    
 
     public Predictor() {
         this.licensePlateNumber = "";
@@ -34,6 +35,7 @@ public class Predictor {
         this.licensePlateNumber = licensePlateNumber;
         this.date = date;
         this.time = time;
+        
     }
 
     public String getLicensePlateNumber() {
@@ -61,10 +63,12 @@ public class Predictor {
     }
 
     //Returns whether or not that car can be on the road.
-    public boolean canBeOnTheRoad() {
-        licenseLastNumber = PlateLastDigits.extractLastDigits(licensePlateNumber, 1);
+    public boolean canBeOnTheRoad(Schedule schedule, LastDigits lastDigits) {
+        
+        licenseLastNumber = lastDigits.extractLastDigits(licensePlateNumber, 1);
         int dayOfTheWeek = DateOfTheWeek.getDayOfTheWeek(date);
-        boolean insideRestrictedTime= TimeSchedule.insideRestrictedSchedule(time);
+        
+        boolean insideRestrictedTime= schedule.insideRestrictedSchedule(time);
         
         if(insideRestrictedTime)
             return !isRestrictedDayByLicenseNumber(dayOfTheWeek,licenseLastNumber);
