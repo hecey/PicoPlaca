@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PicoPlaca;
+package com.hecey.picoplaca;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,6 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -18,53 +22,59 @@ import static org.junit.Assert.*;
  */
 public class PredictorTest {
 
+    @Mock
     private static TimeSchedule timeSchedule;
+    @Mock
     private static PlateLastDigits lastDigit;
+    @Mock
+    private static DateOfTheWeek dateOfTheWeek;
 
-     @BeforeClass
+    private static Predictor instance;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @BeforeClass
     public static void setUpClass() {
-         timeSchedule = new TimeSchedule();
-         timeSchedule.InitializeRangeList();
-         lastDigit = new PlateLastDigits();
+        timeSchedule = Mockito.mock(TimeSchedule.class);
+        lastDigit = Mockito.mock(PlateLastDigits.class);
+        dateOfTheWeek = Mockito.mock(DateOfTheWeek.class);
+
+        instance = new Predictor();
     }
 
     @AfterClass
     public static void tearDownClass() {
-        timeSchedule = null;
+        instance = null;
     }
+
     @Test
     public void testCanBeOnTheRoadWhenValidScheduleTime() {
         System.out.println("canBeOnTheRoad");
 
-        Predictor instance = new Predictor();
+        when(timeSchedule.insideRestrictedSchedule(instance.getTime())).thenReturn(false);
+        when(lastDigit.extractLastDigits(instance.getLicensePlateNumber(), 1)).thenReturn(new Integer(1));
+        when(dateOfTheWeek.getDayOfTheWeek(instance.getDate())).thenReturn(2);
 
-        instance.setDate("20-11-2017");
-        instance.setLicensePlateNumber("ABC-1231");
-        instance.setTime("9:50");
+        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit, dateOfTheWeek);
 
-        boolean expResult = true;
-        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit);
-        assertEquals("Licence number: " + instance.getLicensePlateNumber() + " should not be allowed to run", expResult, result);
-
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertTrue(result);
     }
 
     @Test
     public void testCanBeOnTheRoadWhenInvalidScheduleTime() {
         System.out.println("canBeOnTheRoad");
 
-        Predictor instance = new Predictor();
-
-        instance.setDate("20-11-2017");
-        instance.setLicensePlateNumber("ABC-1231");
-        instance.setTime("07:30");
-
         boolean expResult = false;
-        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit);
-        assertEquals("Licence number: " + instance.getLicensePlateNumber() + " should be allowed to run", expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
 
+        when(timeSchedule.insideRestrictedSchedule(instance.getTime())).thenReturn(true);
+        when(lastDigit.extractLastDigits(instance.getLicensePlateNumber(), 1)).thenReturn(new Integer(1));
+        when(dateOfTheWeek.getDayOfTheWeek(instance.getDate())).thenReturn(new Integer(2));
+
+        boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit, dateOfTheWeek);
+        assertFalse(result);
+
+    }
 }
