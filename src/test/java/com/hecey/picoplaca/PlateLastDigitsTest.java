@@ -29,7 +29,7 @@ public class PlateLastDigitsTest {
      * Test of extractLastDigits method, of class PlateLastDigits.
      */
     @Test
-    public void testExtractLastDigits() {
+    public void ExtractLastDigits_From_A_Plate_Number() {
         System.out.println("extractLastDigits");
         String licensePlateNumber = "ABC-1234";
         int numberOfDigits = 1;

@@ -31,7 +31,7 @@ public class DateOfTheWeekTest {
      * Test of getDayOfTheWeek method, of class DateOfTheWeek.
      */
     @Test
-    public void testGetDayOfTheWeekMonday() {
+    public void GetDayOfTheWeek_When_Monday() {
         System.out.println("getDayOfTheWeek");
         dateAsString = "27-11-2017";
         int expResult = 2;
@@ -41,7 +41,7 @@ public class DateOfTheWeekTest {
         
     }
 
-    public void testGetDayOfTheWeekFriday() {
+    public void GetDayOfTheWeek_When_Friday() {
         System.out.println("getDayOfTheWeek");
         dateAsString = "24-11-2017";
         int expResult = 6;

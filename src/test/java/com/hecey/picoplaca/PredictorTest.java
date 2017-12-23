@@ -51,7 +51,7 @@ public class PredictorTest {
     }
 
     @Test
-    public void testCanBeOnTheRoadWhenValidScheduleTime() {
+    public void CanBeOnTheRoad_Verified_Valid_ScheduleTime() {
         System.out.println("canBeOnTheRoad");
 
         when(timeSchedule.insideRestrictedSchedule(instance.getTime())).thenReturn(false);
@@ -64,10 +64,10 @@ public class PredictorTest {
     }
 
     @Test
-    public void testCanBeOnTheRoadWhenInvalidScheduleTime() {
+    public void CanBeOnTheRoad_Verify_Invalid_ScheduleTime() {
         System.out.println("canBeOnTheRoad");
 
-        boolean expResult = false;
+        
 
         when(timeSchedule.insideRestrictedSchedule(instance.getTime())).thenReturn(true);
         when(lastDigit.extractLastDigits(instance.getLicensePlateNumber(), 1)).thenReturn(new Integer(1));

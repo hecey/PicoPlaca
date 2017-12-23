@@ -34,25 +34,23 @@ public class TimeScheduleTest {
      * Test of insideRestrictedSchedule method, of class TimeSchedule.
      */
     @Test
-    public void testInsideRestrictedScheduleForTrue() {
+    public void InsideRestrictedSchedule_For_True() {
         System.out.println("insideRestrictedSchedule for True is valid");
         String time = "07:30";
         boolean expResult = true;
         boolean result = timeSchedule.insideRestrictedSchedule(time);
         assertEquals(time + " is not in the time  schedule range", expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     @Test
-    public void testInsideRestrictedScheduleForFalse() {
+    public void InsideRestrictedSchedule_For_False() {
         System.out.println("insideRestrictedSchedule for False is valid");
         String time = "9:40";
         boolean expResult = true;
         boolean result = timeSchedule.insideRestrictedSchedule(time);
         assertNotEquals(time + " is in the time  schedule range", expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
 }
