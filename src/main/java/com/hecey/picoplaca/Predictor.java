@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PicoPlaca;
+package com.hecey.picoplaca;
 
 import java.util.Date;
 
@@ -63,10 +63,10 @@ public class Predictor {
     }
 
     //Returns whether or not that car can be on the road.
-    public boolean canBeOnTheRoad(Schedule schedule, LastDigits lastDigits) {
+    public boolean canBeOnTheRoad(Schedule schedule, LastDigits lastDigits, DateOf dateOf) {
         
         licenseLastNumber = lastDigits.extractLastDigits(licensePlateNumber, 1);
-        int dayOfTheWeek = DateOfTheWeek.getDayOfTheWeek(date);
+        int dayOfTheWeek = dateOf.getDayOfTheWeek(date);
         
         boolean insideRestrictedTime= schedule.insideRestrictedSchedule(time);
         

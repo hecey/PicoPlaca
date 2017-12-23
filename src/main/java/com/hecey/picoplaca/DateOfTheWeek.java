@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PicoPlaca;
+package com.hecey.picoplaca;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  *
  * @author katrina
  */
-class DateOfTheWeek {
+class DateOfTheWeek implements DateOf{
     //Returns day of week as int, Week starts from Sunday as 1.
-    public static int getDayOfTheWeek(String dateAsString) {
+    public int getDayOfTheWeek(String dateAsString) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         Date date;

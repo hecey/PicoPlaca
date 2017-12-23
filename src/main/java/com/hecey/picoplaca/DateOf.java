@@ -5,16 +5,12 @@
  */
 package com.hecey.picoplaca;
 
-import java.util.Date;
-
 /**
  *
  * @author katrina
  */
-public interface Range  {
+interface DateOf {
 
-    public Date getTimeToStart();
-
-    public Date getTimeToFinish();
+    public int getDayOfTheWeek(String date);
     
 }
