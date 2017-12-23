@@ -38,8 +38,7 @@ public class DateOfTheWeekTest {
 
         int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     public void testGetDayOfTheWeekFriday() {
@@ -48,7 +47,6 @@ public class DateOfTheWeekTest {
         int expResult = 6;
         int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 }
