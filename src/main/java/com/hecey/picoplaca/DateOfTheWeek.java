@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package PicoPlaca;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,29 +17,26 @@ import java.util.logging.Logger;
  *
  * @author katrina
  */
-class DateOfTheWeek implements DateOf {
-
-    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
+class DateOfTheWeek {
     //Returns day of week as int, Week starts from Sunday as 1.
-    @Override
-    public int getDayOfTheWeek(String dateAsString) {
+    public static int getDayOfTheWeek(String dateAsString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        Date date = null;
+        Date date;
         int dayOfWeek = 0;
-
         try {
             date = formatter.parse(dateAsString);
+            Calendar c;
+            c = new GregorianCalendar();
+            
+            c.setTime(date);
+            
+            dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+            
+
         } catch (ParseException ex) {
             Logger.getLogger(DateOfTheWeek.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Calendar c;
-        c = new GregorianCalendar();
-
-        c.setTime(date);
-
-        dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-
         return dayOfWeek;
     }
 }

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package PicoPlaca;
 
-import com.hecey.picoplaca.TimeSchedule;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

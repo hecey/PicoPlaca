@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package PicoPlaca;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -36,7 +36,7 @@ public class DateOfTheWeekTest {
         dateAsString = "27-11-2017";
         int expResult = 2;
 
-        int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        int result = DateOfTheWeek.getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -46,7 +46,7 @@ public class DateOfTheWeekTest {
         System.out.println("getDayOfTheWeek");
         dateAsString = "24-11-2017";
         int expResult = 6;
-        int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        int result = DateOfTheWeek.getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
