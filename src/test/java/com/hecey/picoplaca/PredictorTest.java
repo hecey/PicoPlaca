@@ -75,6 +75,9 @@ public class PredictorTest {
 
         boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit, dateOfTheWeek);
         assertFalse(result);
+        verify(timeSchedule).insideRestrictedSchedule(instance.getTime());
+        verify(lastDigit).extractLastDigits(instance.getLicensePlateNumber(), 1);
+        verify(dateOfTheWeek).getDayOfTheWeek(instance.getDate());
 
     }
 }
