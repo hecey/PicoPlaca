@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
-import java.util.Date;
+import com.hecey.picoplaca.libs.exception.DOException;
 
 /**
  *
@@ -63,7 +63,7 @@ public class Predictor {
     }
 
     //Returns whether or not that car can be on the road.
-    public boolean canBeOnTheRoad(Schedule schedule, LastDigits lastDigits, DateOf dateOf) {
+    public boolean canBeOnTheRoad(Schedule schedule, LastDigits lastDigits, DateOf dateOf) throws DOException{
         
         licenseLastNumber = lastDigits.extractLastDigits(licensePlateNumber, 1);
         int dayOfTheWeek = dateOf.getDayOfTheWeek(date);

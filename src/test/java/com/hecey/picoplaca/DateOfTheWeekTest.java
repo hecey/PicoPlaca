@@ -5,6 +5,8 @@
  */
 package com.hecey.picoplaca;
 
+import com.hecey.picoplaca.libs.DateOfTheWeek;
+import com.hecey.picoplaca.libs.exception.DOException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,22 +33,42 @@ public class DateOfTheWeekTest {
      * Test of getDayOfTheWeek method, of class DateOfTheWeek.
      */
     @Test
-    public void GetDayOfTheWeek_When_Monday() {
+    public void GetDayOfTheWeek_When_Monday() throws DOException {
         System.out.println("getDayOfTheWeek");
         dateAsString = "27-11-2017";
         int expResult = 2;
 
         int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
-        
+
     }
 
-    public void GetDayOfTheWeek_When_Friday() {
+    @Test
+    public void GetDayOfTheWeek_When_Friday() throws DOException {
         System.out.println("getDayOfTheWeek");
         dateAsString = "24-11-2017";
         int expResult = 6;
         int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
-        
+
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void GetDayOfTheWeek_Should_Get_Exception_For_DateIsNull() throws DOException {
+        System.out.println("GetDayOfTheWeek_Should_Get_Exception_For_Null");
+        dateAsString = null;
+
+        new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+
+    }
+
+    @Test(expected = DOException.class)
+    public void GetDayOfTheWeek_Should_Get_Exception_For_WrongInput() throws DOException {
+        System.out.println("GetDayOfTheWeek_Should_Get_Exception_For_WrongInput");
+        dateAsString = "12";;
+
+        new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+
+    }
+
 }

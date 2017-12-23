@@ -5,6 +5,8 @@
  */
 package com.hecey.picoplaca;
 
+import com.hecey.picoplaca.libs.PlateLastDigits;
+import com.hecey.picoplaca.libs.exception.DOException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -15,12 +17,16 @@ import static org.junit.Assert.*;
  * @author katrina
  */
 public class PlateLastDigitsTest {
-    
- 
+
+    private String licensePlateNumber;
+    private static int numberOfDigits;
+    private int expResult;
+
     @BeforeClass
     public static void setUpClass() {
+        numberOfDigits = 1;
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -29,15 +35,28 @@ public class PlateLastDigitsTest {
      * Test of extractLastDigits method, of class PlateLastDigits.
      */
     @Test
-    public void ExtractLastDigits_From_A_Plate_Number() {
-        System.out.println("extractLastDigits");
-        String licensePlateNumber = "ABC-1234";
-        int numberOfDigits = 1;
-        int expResult = 4;
+    public void PlateLastDigits_Should_Get_A_Valid_Return() {
+        System.out.println("PlateLastDigits_Should_Get_A_Valid_Return");
+        licensePlateNumber = "ABC-1234";
+
+        expResult = 4;
         int result = new PlateLastDigits().extractLastDigits(licensePlateNumber, numberOfDigits);
-        assertEquals("Expeted result is 4", expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertEquals("Expected result is 4", expResult, result);
+
     }
-    
+
+    @Test(expected = NumberFormatException.class)
+    public void PlateLastDigits_Should_Get_A_Valid_Return_I() {
+        System.out.println("PlateLastDigits_Should_Get_A_Valid_Return");
+        licensePlateNumber = "ABC";
+
+        new PlateLastDigits().extractLastDigits(licensePlateNumber, numberOfDigits);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void PlateLastDigits_Should_Get_Exception_For_PlateIsNull() throws DOException {
+        System.out.println("PlateLastDigits_Should_Get_Exception_For_PlateIsNull");
+        new PlateLastDigits().extractLastDigits(null, numberOfDigits);
+    }
 }

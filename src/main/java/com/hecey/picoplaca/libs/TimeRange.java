@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
+import com.hecey.picoplaca.libs.exception.DOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,13 +25,13 @@ public class TimeRange implements Range{
         this.timeToFinish = timeToFinish;
     }
     
-    public TimeRange(String timeToStart, String timeToFinish) {
+    public TimeRange(String timeToStart, String timeToFinish) throws DOException {
         parser = new SimpleDateFormat("HH:mm");
         try {
             this.timeToStart = parser.parse(timeToStart);
             this.timeToFinish = parser.parse(timeToFinish);
         } catch (ParseException ex) {
-            Logger.getLogger(TimeRange.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DOException(ex);
         }
         
     }
@@ -45,6 +44,7 @@ public class TimeRange implements Range{
         return parser;
     }
 
+    @Override
     public Date getTimeToStart() {
         return timeToStart;
     }
@@ -53,6 +53,7 @@ public class TimeRange implements Range{
         this.timeToStart = timeToStart;
     }
 
+    @Override
     public Date getTimeToFinish() {
         return timeToFinish;
     }

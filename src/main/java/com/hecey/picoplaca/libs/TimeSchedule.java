@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
+import com.hecey.picoplaca.libs.exception.DOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +25,7 @@ public class TimeSchedule implements Schedule{
 
     }
 
-    public static void InitializeRangeList() {
+    public static void InitializeRangeList() throws DOException {
 
         timeRangeList.add(new TimeRange("07:00", "09:30"));
         timeRangeList.add(new TimeRange("16:00", "19:30"));
@@ -41,7 +40,13 @@ public class TimeSchedule implements Schedule{
         parser = parserNew;
     }
 
-    public  boolean insideRestrictedSchedule(String time) {
+    @Override
+    public  boolean insideRestrictedSchedule(String time) throws DOException{
+        
+        if (time == null || time.length() == 0) {
+            throw new IllegalArgumentException();
+        }
+        
         if (timeRangeList == null) {
             InitializeRangeList();
         }
@@ -49,24 +54,18 @@ public class TimeSchedule implements Schedule{
         try {
             userTime = parser.parse(time);
         } catch (ParseException ex) {
-            Logger.getLogger(TimeSchedule.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DOException(ex);
         }
 
         return insideRestrictedSchedule(userTime);
 
     }
 
-    public  boolean insideRestrictedSchedule(Date userTime) {
+    public  boolean insideRestrictedSchedule(Date userTime) throws DOException{
         if (timeRangeList.isEmpty()) {
             InitializeRangeList();
         }
-        for (Range timeRange : timeRangeList) {
-            if (userTime.after(timeRange.getTimeToStart()) && userTime.before(timeRange.getTimeToFinish())) {
-                return true;
-            }
-        }
-
-        return false;
+        return timeRangeList.stream().anyMatch((timeRange) -> (userTime.after(timeRange.getTimeToStart()) && userTime.before(timeRange.getTimeToFinish())));
     }
 
     public static void ClearTimeRangeList() {

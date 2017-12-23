@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
-
-import java.util.Date;
+package com.hecey.picoplaca.libs;
 
 /**
  *
  * @author katrina
  */
-public interface Range  {
+public interface LastDigits {
 
-    public Date getTimeToStart();
-
-    public Date getTimeToFinish();
+    public int extractLastDigits(String licensePlateNumber, int i);
     
 }

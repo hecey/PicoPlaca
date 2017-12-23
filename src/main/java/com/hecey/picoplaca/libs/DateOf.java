@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
+import com.hecey.picoplaca.libs.exception.DOException;
 /**
  *
  * @author katrina
  */
-interface LastDigits {
+public interface DateOf {
 
-    public int extractLastDigits(String licensePlateNumber, int i);
+    public int getDayOfTheWeek(String date) throws DOException;
     
 }
