@@ -17,8 +17,6 @@ public class DOException extends Exception {
         super(ex);
     }
 
-    public DOException(NumberFormatException e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
     
 }
