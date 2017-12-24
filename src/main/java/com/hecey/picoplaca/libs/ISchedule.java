@@ -5,12 +5,14 @@
  */
 package com.hecey.picoplaca.libs;
 
+import com.hecey.picoplaca.libs.exception.DOException;
+
 /**
  *
  * @author katrina
  */
-public interface LastDigits {
+public interface ISchedule {
 
-    public int extractLastDigits(String licensePlateNumber, int i);
-    
+    public boolean insideRestrictedSchedule(String time) throws DOException;
+
 }

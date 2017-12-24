@@ -11,7 +11,7 @@ import com.hecey.picoplaca.libs.exception.DOException;
  *
  * @author katrina
  */
-public class PlateLastDigits implements LastDigits {
+public class PlateLastDigits implements ILastDigits {
 
     @Override
     public int extractLastDigits(String licensePlateNumber, int numberOfDigits) {

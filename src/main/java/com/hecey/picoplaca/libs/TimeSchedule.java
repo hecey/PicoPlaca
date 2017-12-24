@@ -15,24 +15,26 @@ import java.util.Date;
  *
  * @author katrina
  */
-public class TimeSchedule implements Schedule{
+public class TimeSchedule implements ISchedule{
 
-    private static ArrayList<Range> timeRangeList = new ArrayList();
-    private static SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
+    private static ArrayList<IRange> timeRangeList;
+    private static SimpleDateFormat parser;
 
-    public static void Schedule(ArrayList<Range> timeRangeListNew) {
-        timeRangeList = timeRangeListNew;
-
+    public TimeSchedule() {
+          timeRangeList = new ArrayList();
     }
 
-    public static void InitializeRangeList() throws DOException {
+    
 
+    public  void InitializeRangeList() throws DOException {
+        
+       
         timeRangeList.add(new TimeRange("07:00", "09:30"));
         timeRangeList.add(new TimeRange("16:00", "19:30"));
 
     }
 
-    public static void setTimeRangeList(ArrayList<Range> timeRangeListNew) {
+    public static void setTimeRangeList(ArrayList<IRange> timeRangeListNew) {
         timeRangeList = timeRangeListNew;
     }
 
@@ -47,9 +49,7 @@ public class TimeSchedule implements Schedule{
             throw new IllegalArgumentException();
         }
         
-        if (timeRangeList == null) {
-            InitializeRangeList();
-        }
+        
         Date userTime = null;
         try {
             userTime = parser.parse(time);
@@ -62,9 +62,7 @@ public class TimeSchedule implements Schedule{
     }
 
     public  boolean insideRestrictedSchedule(Date userTime) throws DOException{
-        if (timeRangeList.isEmpty()) {
-            InitializeRangeList();
-        }
+        
         return timeRangeList.stream().anyMatch((timeRange) -> (userTime.after(timeRange.getTimeToStart()) && userTime.before(timeRange.getTimeToFinish())));
     }
 

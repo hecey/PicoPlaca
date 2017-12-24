@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
-import com.hecey.picoplaca.libs.Predictor;
-import com.hecey.picoplaca.libs.TimeSchedule;
-import com.hecey.picoplaca.libs.PlateLastDigits;
-import com.hecey.picoplaca.libs.DateOfTheWeek;
 import com.hecey.picoplaca.libs.exception.DOException;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -31,28 +28,31 @@ public class PredictorTest {
     @Mock
     private static PlateLastDigits lastDigit;
     @Mock
-    private static DateOfTheWeek dateOfTheWeek;
+    private static DayOfTheWeek dateOfTheWeek;
     
     private static Predictor instance;
+    private static LicenseLastNumberByDay l;
     
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUp() {
         timeSchedule = Mockito.mock(TimeSchedule.class);
         lastDigit = Mockito.mock(PlateLastDigits.class);
-        dateOfTheWeek = Mockito.mock(DateOfTheWeek.class);
-        
+        dateOfTheWeek = Mockito.mock(DayOfTheWeek.class);
+         l=new LicenseLastNumberByDay();
+       // instance.setLicenseLastNumberByDay(l);
         instance = new Predictor();
     }
     
-    @AfterClass
-    public static void tearDownClass() {
+    @After
+    public void tearDown() {
         instance = null;
     }
+    
     
     @Test
     public void CanBeOnTheRoad_Verified_Valid_ScheduleTime() throws DOException {
@@ -62,18 +62,29 @@ public class PredictorTest {
         when(lastDigit.extractLastDigits(instance.getLicensePlateNumber(), 1)).thenReturn(new Integer(1));
         when(dateOfTheWeek.getDayOfTheWeek(instance.getDate())).thenReturn(2);
         
+       
         boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit, dateOfTheWeek);
         
         assertTrue(result);
+        
     }
     
+    
+   
+    
+    
+   
+    
+    
     @Test
-    public void CanBeOnTheRoad_Verify_Invalid_ScheduleTime() throws DOException {
-        System.out.println("CanBeOnTheRoad_Verify_Invalid_ScheduleTime");
+    public void CanBeOnTheRoad_Verify_Invalid_ScheduleTime_Wednesday() throws DOException {
+        System.out.println("CanBeOnTheRoad_Verify_Invalid_ScheduleTime_Wednesday");
         
         when(timeSchedule.insideRestrictedSchedule(instance.getTime())).thenReturn(true);
         when(lastDigit.extractLastDigits(instance.getLicensePlateNumber(), 1)).thenReturn(new Integer(1));
         when(dateOfTheWeek.getDayOfTheWeek(instance.getDate())).thenReturn(new Integer(2));
+          l=new LicenseLastNumberByDay();
+        instance.setLicenseLastNumberByDay(l);
         
         boolean result = instance.canBeOnTheRoad(timeSchedule, lastDigit, dateOfTheWeek);
         assertFalse(result);

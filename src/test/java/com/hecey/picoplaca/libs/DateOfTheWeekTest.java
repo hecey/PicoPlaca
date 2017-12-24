@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
-import com.hecey.picoplaca.libs.DateOfTheWeek;
+import com.hecey.picoplaca.libs.DayOfTheWeek;
 import com.hecey.picoplaca.libs.exception.DOException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -38,7 +38,7 @@ public class DateOfTheWeekTest {
         dateAsString = "27-11-2017";
         int expResult = 2;
 
-        int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        int result = new DayOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
 
     }
@@ -48,7 +48,7 @@ public class DateOfTheWeekTest {
         System.out.println("getDayOfTheWeek");
         dateAsString = "24-11-2017";
         int expResult = 6;
-        int result = new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        int result = new DayOfTheWeek().getDayOfTheWeek(dateAsString);
         assertEquals(expResult, result);
 
     }
@@ -58,7 +58,7 @@ public class DateOfTheWeekTest {
         System.out.println("GetDayOfTheWeek_Should_Get_Exception_For_Null");
         dateAsString = null;
 
-        new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        new DayOfTheWeek().getDayOfTheWeek(dateAsString);
 
     }
 
@@ -67,7 +67,7 @@ public class DateOfTheWeekTest {
         System.out.println("GetDayOfTheWeek_Should_Get_Exception_For_WrongInput");
         dateAsString = "12";;
 
-        new DateOfTheWeek().getDayOfTheWeek(dateAsString);
+        new DayOfTheWeek().getDayOfTheWeek(dateAsString);
 
     }
 

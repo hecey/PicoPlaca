@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hecey.picoplaca;
+package com.hecey.picoplaca.libs;
 
 import com.hecey.picoplaca.libs.PlateLastDigits;
 import com.hecey.picoplaca.libs.exception.DOException;

@@ -5,13 +5,12 @@
  */
 package com.hecey.picoplaca.libs;
 
-import com.hecey.picoplaca.libs.exception.DOException;
 /**
  *
  * @author katrina
  */
-public interface DateOf {
+public interface ILastDigits {
 
-    public int getDayOfTheWeek(String date) throws DOException;
+    public int extractLastDigits(String licensePlateNumber, int i);
     
 }

@@ -5,16 +5,13 @@
  */
 package com.hecey.picoplaca.libs;
 
-import java.util.Date;
-
+import com.hecey.picoplaca.libs.exception.DOException;
 /**
  *
  * @author katrina
  */
-public interface Range  {
+public interface IDate {
 
-    public Date getTimeToStart();
-
-    public Date getTimeToFinish();
+    public int getDayOfTheWeek(String date) throws DOException;
     
 }

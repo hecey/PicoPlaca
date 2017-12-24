@@ -5,14 +5,11 @@
  */
 package com.hecey.picoplaca.libs;
 
-import com.hecey.picoplaca.libs.exception.DOException;
-
 /**
  *
  * @author katrina
  */
-public interface Schedule {
+public interface ILicenseLastNumberByDay {
 
-    public boolean insideRestrictedSchedule(String time) throws DOException;
-
+    public boolean isRestricted(int d, int licenseLastNumber);
 }

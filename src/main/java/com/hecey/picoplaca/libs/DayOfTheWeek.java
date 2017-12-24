@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
  *
  * @author katrina
  */
-public class DateOfTheWeek implements DateOf {
+public class DayOfTheWeek implements IDate {
 
     private SimpleDateFormat formatter;
     private Date date;
